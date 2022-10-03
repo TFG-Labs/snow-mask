@@ -58,7 +58,7 @@
                         {% if masking_policy_db|upper ~ '.' ~ masking_policy_schema|upper ~ '.' ~ masking_policy_name|upper == masking_policy_in_db %}
                             {{ log(modules.datetime.datetime.now().strftime("%H:%M:%S") ~ " | " ~ operation_type ~ "ing masking policy to model  : " ~ masking_policy_db|upper ~ '.' ~ masking_policy_schema|upper ~ '.' ~ masking_policy_name|upper ~ " on " ~ database ~ '.' ~ schema ~ '.' ~ alias ~ '.' ~ column, info=True) }}
                             {% set query %}
-                            alter {{materialization}}  {{database}}.{{schema}}.{{alias}} modify column  {{column}} set masking policy {{masking_policy_db}}.{{masking_policy_schema}}.{{masking_policy_name}};
+                            alter {{materialization}}  {{database}}.{{schema}}.{{alias}} modify column  "{{column}}" set masking policy {{masking_policy_db}}.{{masking_policy_schema}}.{{masking_policy_name}};
                             {% endset %}
                             {% do run_query(query) %}
                         {% endif %}
